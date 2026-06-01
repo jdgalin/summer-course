@@ -2,6 +2,17 @@
 
 These exercises walk through working with Git remotes and contributing to shared repositories via forks and pull requests.
 
+- [Hands-On: Git Remotes, Push/Pull, Forking, and Pull Requests](#hands-on-git-remotes-pushpull-forking-and-pull-requests)
+    - [Exercise 0: Setup Environment](#exercise-0-setup-environment)
+    - [Exercise 1: Add a Remote Repository](#exercise-1-add-a-remote-repository)
+    - [Exercise 2: Push Your Code to GitHub](#exercise-2-push-your-code-to-github)
+    - [Exercise 3: Pull Changes from a Remote](#exercise-3-pull-changes-from-a-remote)
+    - [Exercise 4: Fork a Repository](#exercise-4-fork-a-repository)
+    - [Exercise 5: Clone a Forked Repository](#exercise-5-clone-a-forked-repository)
+    - [Exercise 6: Make a Change and Push to Your Fork](#exercise-6-make-a-change-and-push-to-your-fork)
+    - [Exercise 7: Create a Pull Request](#exercise-7-create-a-pull-request)
+    - [Exercise 8: Add an Upstream Remote (Optional)](#exercise-8-add-an-upstream-remote-optional)
+
 ---
 
 ### Exercise 0: Setup Environment

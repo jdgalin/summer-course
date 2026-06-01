@@ -5,6 +5,7 @@
   - [Git and Github](#git-and-github)
   - [AI/ML](#aiml)
   - [DevOps](#devops)
+  - [Cloud Computing](#cloud-computing)
 - [DoD/Army/AI2C Material](#dodarmyai2c-material)
 
 # Beginner's Reference Material
@@ -41,6 +42,14 @@
 
 - [CI with Python](https://realpython.com/github-actions-python/)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
+
+## Cloud Computing
+- [Cloud Concepts (YouTube playlist)](https://www.youtube.com/watch?v=20QUNgFIrK0&list=PLOspHqNVtKAC-_ZAGresP-i0okHe5FjcJ)
+- [Cloud Fundamentals (40 minute video)](https://www.youtube.com/watch?v=ZaA0kNm18pE)
+- [Cloud Basics](https://www.geeksforgeeks.org/cloud-computing/cloud-computing/)
+- [Virtualization and Containerization](https://www.wiz.io/academy/container-security/containerization-vs-virtualization)
+- [Common Azure Services (10 minute video)](https://www.youtube.com/watch?v=L5N9S8pKpOw)
+- [Learn Docker](https://www.udemy.com/course/docker-mastery/)
 
 # DoD/Army/AI2C Material
 

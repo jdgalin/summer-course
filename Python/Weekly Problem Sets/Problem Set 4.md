@@ -1,12 +1,31 @@
-# Problem Set 3 — Data Structures, String Methods & List Methods
+# Problem Set 4 — Custom Classes & Object-Oriented Programming
 
-**Topics covered:** dictionaries, sets, string methods (`.lower()`, `.split()`, `.strip()`, `.replace()`, `.join()`, etc.), list methods (`.append()`, `.sort()`, `.count()`, `.remove()`, etc.)
+**Topics covered:** custom classes, `__init__` methods, instance attributes, instance methods, working with lists of objects, dictionaries, sets, string methods
+
+**Autograder note:** When using automated tests, it often requires exact function names, parameter lists, and return types. Do not rename functions or change parameter names/order; avoid extra print statements unless the instructions ask for them; prefer returning values over printing when specified. Wrap any demonstration or test code in an `if __name__ == "__main__":` block so autograders can import your functions cleanly.
+
+Work on a new branch named `python/problem-set-4` for this problem set.  Your submitted script must be named `Problem Set 4 starter.py` or `Problem Set 4.py` for it to be picked up by the autograder.  Once you have passed all tests, you can merge your code back into main.
+
+## Submitting Your Work
+As stated above, you should create a new branch and checkout that branch for this problem set called `python/problem-set-4`.  The general flow is shown below.
+
+1. Fork the `AFC-AI2C/summer-course` repo (you only need to do this once)
+   - This will create your own personal repo at `<github-username>/summer-course`
+   - You have full ownership of that repo
+2. Clone your personal repo locally (you only need to do this once)
+3. Create and switch to a new branch called `python/problem-set-4`
+4. Perform your work in either `Problem Set 4 starter.py` or a new file called `Problem Set 4.py`
+5. Commit your changes
+6. Push your changes
+7. Review the output in GitHub Actions.  You can click into each run separately to see feedback
+8. Fix any issues and repeat steps 5-7.
+9. Once complete for all problems, you can merge your work back into main.
 
 ---
 
 ## Problem 1 — Soldier Roster & Dispatch System 🪖
 
-*HQ needs a searchable roster of available soldiers. Your program will parse incoming personnel reports, build a roster, and process dispatch orders.*
+*HQ needs a searchable roster of available soldiers. Your program will parse incoming personnel reports using custom classes to represent each soldier.*
 
 **You are given the following personnel reports as raw strings:**
 
@@ -23,20 +42,36 @@ reports = [
 
 **Your task:**
 
-- Use a `for` loop to parse each report string. Use `.split("|")`, `.strip()`, and `.split(":")` to extract each field.
-- Use `.title()` on names and `.lower()` on status values to normalise the data.
-- Build a dictionary called `roster` where each key is a soldier's name and the value is a dictionary with keys `rank`, `fitness`, and `status`.
-- Use a set to collect all unique ranks in the roster and print them.
-- Build and print a list of all **available** soldiers, sorted alphabetically by name using `.sort()`.
-- Write a function `dispatch(roster, name)` that sets a soldier's status to `"deployed"` if they are currently `"available"`, or prints a message if they are already deployed or not found.
-- Call `dispatch()` on `"Santos"` and `"Kowalski"`, then print the updated roster status for both.
+- **Create a `Soldier` class** with the following:
+  - An `__init__` method that accepts `name`, `rank`, `fitness`, and `deployed` parameters
+  - Store these as instance attributes using `self.name`, `self.rank`, `self.fitness`, and `self.deployed`
+  - Add a `dispatch()` method that sets `self.deployed = True`
+  - Add a `__str__` method that returns a formatted string with the soldier's information (e.g., `"Santos (PRIVATE, fitness: 91, deployed: False)"`)
+
+- Create a function named `process_reports()` that:
+  - Takes a list of report strings as input
+  - Returns two values: a dictionary of `Soldier` objects (keyed by name), and a set of unique ranks
+  - Use a `for` loop to parse each report string with `.split("|")`, `.strip()`, and `.split(":")`
+  - Use `.title()` on names, `.upper()` on ranks, and `.lower()` on status values to normalise the data
+  - Create a `Soldier` object for each report and add it to the roster dictionary
+  - Collect all unique ranks in a set
+
+- Write a function `show_available(roster)` that:
+  - Takes the roster dictionary (containing `Soldier` objects) as input
+  - Prints all soldiers where `deployed` is `False`, sorted alphabetically by name
+  - Use `.sort()` on the list of available names
+
+- Write a function `dispatch(roster, name)` that:
+  - Takes the roster dictionary and a soldier's name
+  - Calls the `.dispatch()` method on the appropriate `Soldier` object
+  - Prints a message if they are already deployed or not found
 
 **Expected output (partial):**
 
 ```
 === ROSTER LOADED ===
 6 soldiers on record.
-Ranks on file: {'Private', 'Corporal', 'Sergeant'}
+Ranks on file: {'PRIVATE', 'CORPORAL', 'SERGEANT'}
 
 Available soldiers: ['Briggs', 'Okafor', 'Reyes', 'Santos']
 
@@ -50,7 +85,7 @@ Updated status:
 
 ### Challenge
 
-Write a function `fitness_report(roster)` that builds and returns a dictionary with three keys — `"high"`, `"medium"`, and `"low"` — each mapping to a list of soldier names in that fitness band (high ≥ 80, medium 60–79, low < 60). Use `.append()` to build each list and `.sort()` to sort the names. Print the full report.
+Write a function `fitness_report(roster)` that builds and returns a dictionary with three keys — `"high"`, `"medium"`, and `"low"` — each mapping to a list of soldier names in that fitness band (high ≥ 80, medium 60–79, low < 60). Access the `fitness` attribute from each `Soldier` object using a `for` loop. Use `.append()` to build each list and `.sort()` to sort the names. Print the full report.
 
 ---
 
@@ -61,23 +96,39 @@ Write a function `fitness_report(roster)` that builds and returns a dictionary w
 **You are given the following recipes and pantry:**
 
 ```python
-recipes = {
+recipe_data = {
     "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
     "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
     "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
     "grilled cheese":  ["bread", "cheese", "butter"],
 }
 
-pantry = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
+pantry_items = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
 ```
 
 **Your task:**
 
-- Convert `pantry` to a set for efficient lookups.
-- Write a function `can_make(recipe_ingredients, pantry_set)` that returns `True` if every ingredient is in the pantry, `False` otherwise.
-- Write a function `missing_ingredients(recipe_ingredients, pantry_set)` that returns a **sorted list** of any ingredients not in the pantry. Use `.sort()` or `sorted()`.
-- Use a `for` loop to go through each recipe, call both functions, and print whether it can be made and — if not — what's missing.
-- At the end, print a list of all **unique ingredients** across all recipes, sorted alphabetically. Use a set and `.sort()`.
+- **Create a `Recipe` class** with the following:
+  - An `__init__` method that accepts `name` and `ingredients` (a list of strings)
+  - Store these as instance attributes
+  - Add a `can_make(pantry_set)` method that returns `True` if all ingredients are in the pantry set, `False` otherwise
+  - Add a `missing_ingredients(pantry_set)` method that returns a **sorted list** of ingredients not in the pantry
+
+- **Create a `Pantry` class** with the following:
+  - An `__init__` method that accepts a list of ingredient strings
+  - Store the ingredients internally as a **set** for efficient lookups
+  - Add an `add_ingredients(extra_ingredients)` method that adds new ingredients to the pantry
+  - Add a `has(ingredient)` method that returns `True` if the ingredient is in the pantry
+
+- Create a function `create_recipes(recipe_data)` that:
+  - Takes the recipe dictionary shown above
+  - Returns a list of `Recipe` objects
+
+- Create a function `check_recipes(recipes, pantry)` that:
+  - Takes a list of `Recipe` objects and a `Pantry` object
+  - Uses a `for` loop to check each recipe
+  - Prints whether each recipe can be made and — if not — what's missing
+  - At the end, print a list of all **unique ingredients** across all recipes, sorted alphabetically
 
 **Expected output:**
 
@@ -88,23 +139,34 @@ pancakes       : MISSING — ['flour', 'sugar']
 tomato pasta   : MISSING — ['olive oil', 'pasta', 'tomatoes']
 grilled cheese : CAN MAKE ✓
 
-All unique ingredients (12): ['bread', 'butter', 'cheese', 'eggs', ...]
+All unique ingredients (13): ['bread', 'butter', 'cheese', 'eggs', ...]
 ```
 
 ### Challenge
 
-Ask the user to type in a comma-separated list of extra ingredients they have on hand (e.g. `"flour, pasta, tomatoes"`). Use `.split(",")` and `.strip()` to parse the input, add the new items to the pantry set, and re-run the recipe checker. Print which recipes became newly available.
+In your `__main__` block, ask the user for a comma-separated list of extra ingredients, parse them with `.split(",")` and `.strip()`, add them to the pantry using the `.add_ingredients()` method, then call `check_recipes()` again and print which recipes became newly available.
 
 ---
 
 ## Problem 3 — Song Lyric Word Counter 🎵
 
-*Pick your favourite song and paste a few verses as a string in your code. Your program will analyse the lyrics and report word frequency statistics.*
+*Pick your favourite song and paste a few verses as a string in your code. Your program will analyse the lyrics using a custom class.*
 
 **Your task:**
 
-- Assign your chosen lyrics to a variable called `lyrics` as a multi-line string. Here is an example you can use if you prefer:
+- **Create a `LyricAnalyzer` class** with the following:
+  - An `__init__` method that accepts a lyrics string
+  - Store the lyrics as an instance attribute
+  - In `__init__`, process the lyrics: use `.lower()` to normalise, `.replace()` to strip punctuation, and `.split()` to create a list of words
+  - Store the processed word list as `self.words`
+  - Add a `count_words()` method that builds and returns a dictionary mapping each word to its count
+  - Add a `unique_word_count()` method that returns the number of unique words (hint: use a set)
+  - Add a `most_common_word()` method that returns a tuple of `(word, count)` for the most frequently used word
+  - Add a `print_report()` method that prints all words alphabetically with their counts, the unique word count, and the most common word
 
+- In your `__main__` block:
+  - Create a multi-line string variable called `lyrics` with your chosen song lyrics. Here is an example:
+  
 ```python
 lyrics = """
 we will we will rock you
@@ -117,13 +179,8 @@ we will we will rock you
 """
 ```
 
-- Use `.lower()` to normalise the lyrics, then `.split()` to get a list of words.
-- Use `.replace()` to strip out any punctuation characters you want to ignore (e.g. commas, apostrophes).
-- Use a `for` loop and a dictionary to count how many times each word appears.
-- Use `.sort()` on a list of the dictionary's keys to print every word and its count alphabetically.
-- Use a set to find and print the number of **unique** words.
-- Use `.count()` on the words list to verify the count of your most frequent word.
-- Print the most frequently used word and its count.
+  - Create a `LyricAnalyzer` object with your lyrics
+  - Call the `.print_report()` method
 
 **Expected output (partial, using example lyrics):**
 
@@ -140,24 +197,27 @@ will       : 6
 
 Unique words: 26
 Most common word: 'we' — 6 times
-Verified with .count(): 6
 ```
 
 ### Challenge
 
-Define a set of stop words to filter out common filler words before counting:
+Add a `filter_stopwords(stop_words)` method to your `LyricAnalyzer` class that:
+- Takes a set of stop words (common filler words to ignore)
+- Creates a new filtered word list excluding stop words
+- Updates `self.words` with the filtered list
 
+Use this set for filtering:
 ```python
 stop_words = {"a", "the", "you", "your", "in", "on", "we", "be", "got"}
 ```
 
-Use a `for` loop to build a filtered word list that excludes any word in `stop_words`. Re-run your word count on the filtered list and print the most common *meaningful* word.
+After filtering, call `.print_report()` again to see the most common *meaningful* word.
 
 ---
 
 ## Problem 4 — Zoo Animal Registry 🦁
 
-*You've just been hired as the data manager for a city zoo. Your job is to build and query a registry of animals currently in residence.*
+*You've just been hired as the data manager for a city zoo. Your job is to build and query a registry of animals using custom classes.*
 
 **You are given the following raw data as a list of comma-separated strings:**
 
@@ -176,11 +236,30 @@ raw_data = [
 
 **Your task:**
 
-- Use a `for` loop to process each string. Use `.split(",")` and `.strip()` to parse each entry into its four fields: name, species, age, and origin.
-- Build a dictionary called `registry` where each key is an animal's name and the value is another dictionary with keys `species`, `age`, and `origin`.
-- Use a set to find all **unique species** in the zoo and print them.
-- Use a set to find all **unique origins** and print how many distinct regions the zoo's animals come from.
-- Ask the user to enter an animal's name. Use `.strip()` and `.title()` to clean the input, then look it up in the registry and print the result.
+- **Create an `Animal` class** with the following:
+  - An `__init__` method that accepts `name`, `species`, `age`, and `origin`
+  - Store these as instance attributes
+  - Add a `__str__` method that returns a formatted string like: `"Bubbles (dolphin, 12 years, from Ocean)"`
+  - Add a `get_info()` method that prints the animal's details in a readable format
+
+- Create a function `build_registry(raw_data)` that:
+  - Takes the list of comma-separated strings
+  - Uses a `for` loop with `.split(",")` and `.strip()` to parse each entry
+  - Creates an `Animal` object for each entry
+  - Returns a dictionary where keys are animal names and values are `Animal` objects
+
+- Create a function `analyze_registry(registry)` that:
+  - Takes the registry dictionary of `Animal` objects
+  - Prints the total number of animals
+  - Uses a set to collect and print all **unique species**
+  - Uses a set to collect and print how many distinct **origins** the zoo's animals come from
+
+- In your `__main__` block:
+  - Build the registry
+  - Call `analyze_registry()`
+  - Ask the user to enter an animal's name
+  - Use `.strip()` and `.title()` to clean the input
+  - Look up the animal in the registry and call its `.get_info()` method (or print "not found")
 
 **Example output (partial):**
 
@@ -201,7 +280,7 @@ Origin:  Ocean
 
 ### Challenge
 
-Build a second dictionary called `by_species` where each key is a species name and the value is a list of animal names of that species. Use `.append()` to build each list. Then use `", ".join()` to print each species and its animals on one line, like:
+Write a function `group_by_species(registry)` that takes the registry dictionary and returns a new dictionary where each key is a species name and the value is a list of `Animal` objects of that species. Then use a `for` loop to print each species with its animal names using `", ".join()`:
 
 ```
 lion    : Simba, Kovu, Nala
@@ -213,7 +292,8 @@ dolphin : Bubbles, Splash
 
 ## References
 
+- [Python classes](https://docs.python.org/3/tutorial/classes.html)
+- [Python `__init__` method](https://docs.python.org/3/tutorial/classes.html#class-objects)
 - [Python dictionaries](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
 - [Python sets](https://docs.python.org/3/tutorial/datastructures.html#sets)
-- [Python list methods](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
 - [Python string methods](https://docs.python.org/3/library/stdtypes.html#string-methods)

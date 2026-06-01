@@ -9,7 +9,7 @@
     - [Exercise 3: Stage the File](#exercise-3-stage-the-file)
     - [Exercise 4: Commit the File](#exercise-4-commit-the-file)
     - [Exercise 5: Make a Change and Commit Again](#exercise-5-make-a-change-and-commit-again)
-    - [Exercise 6: Create a Second File](#exercise-6-create-a-second-file)
+    - [Exercise 6: Commit a Second File](#exercise-6-commit-a-second-file)
   - [Hands-On #2 Exercises](#hands-on-2-exercises)
     - [Exercise 7: View History and Changes](#exercise-7-view-history-and-changes)
     - [Exercise 8: View a Specific Commit](#exercise-8-view-a-specific-commit)
@@ -48,7 +48,7 @@ This guide walks you through the basic Git workflow: initializing a repository, 
 **Goal**: Create a file and add some content.
 
 
-✅ *Check*: Run 'ls' to see the created file in your directory. Run `git status` to see the untracked file.  Read the output carefully.  Which branch are you on?  What are the "untracked" file?  
+✅ *Check*: Run 'ls' to see the created file in your directory. Run `git status` to see the untracked file.  Read the output carefully.  Which branch are you on?  What are "untracked" files?  
 INFO: Line 1 Creates the hello.txt file and adds the line "Hello, Git!"  
 INFO: Line 2 'cat' is short for concatenate, it chains files together into a single output, in this example, your screen is the default output
 
@@ -59,7 +59,7 @@ INFO: Line 2 'cat' is short for concatenate, it chains files together into a sin
 **Goal**: Add the file to the staging area.
 
 
-✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step? You can run 'git add .' to stage all changes at once.
+✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step? You can specify a directory to stage all changes in that directory at once.
 
 ---
 
@@ -68,7 +68,6 @@ INFO: Line 2 'cat' is short for concatenate, it chains files together into a sin
 **Goal**: Commit the staged file with a message.
 
 Git keeps a log of all your commits.  Before we make any commits, let's see what the history says.
-
 
 What does the output show?  Now commit your staged change with a descriptive message.
 
@@ -91,6 +90,7 @@ What does the output show?  Now commit your staged change with a descriptive mes
 **Goal**: Check what happens with unstaged files (no commands for you this time!)
 
 Create a second and third file, but only stage and commit the second file.
+
 
 ✅ *Check*: Run `git status` (should show nothing to commit), and `git log --oneline` to see a summary of commits.
 

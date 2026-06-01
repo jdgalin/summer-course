@@ -1,4 +1,18 @@
 # Git Branching and Merging
+- [Git Branching and Merging](#git-branching-and-merging)
+  - [Hands-On #1: Git Branching and Merging](#hands-on-1-git-branching-and-merging)
+    - [Exercise 1: Create and Switch to a Branch](#exercise-1-create-and-switch-to-a-branch)
+    - [Exercise 2: Make a Change in the Feature Branch](#exercise-2-make-a-change-in-the-feature-branch)
+    - [Exercise 3: Switch Back to Main and Make a Change](#exercise-3-switch-back-to-main-and-make-a-change)
+    - [Exercise 4: Merge Feature Branch into Main (Expect Conflict)](#exercise-4-merge-feature-branch-into-main-expect-conflict)
+    - [Exercise 5: Squash Merge a Feature Branch](#exercise-5-squash-merge-a-feature-branch)
+    - [Exercise 6: Clean Up Merged Branches](#exercise-6-clean-up-merged-branches)
+  - [Hands-On #2: Merge Strategies](#hands-on-2-merge-strategies)
+    - [Exercise 7: Use a Merge Strategy (`--no-ff`)](#exercise-7-use-a-merge-strategy---no-ff)
+    - [Exercise 8: Fast-Forward Merge](#exercise-8-fast-forward-merge)
+    - [Exercise 9: Rebase a Feature Branch](#exercise-9-rebase-a-feature-branch)
+    - [Exercise 10: Squash Multiple Commits into One](#exercise-10-squash-multiple-commits-into-one)
+    - [Exercise 11: Rebase vs Merge – Compare Histories](#exercise-11-rebase-vs-merge--compare-histories)
 
 ## Hands-On #1: Git Branching and Merging
 
@@ -41,7 +55,7 @@ These exercises guide you through creating branches, merging them, resolving con
 ✅ *Check*: A merge conflict should occur. Open `notes.txt` and manually resolve:
 
 
-Edit using your favorite text editor to combine or keep one version. Then:
+Edit using your favorite text editor to combine or keep one version.
 
 
 ---
