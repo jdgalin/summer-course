@@ -1,4 +1,3 @@
-"""
 ### Problem 1
 print("Problem 1\n")
 name     = input("Enter your name: ")
@@ -67,7 +66,7 @@ Push-ups: {push_ups}
 2-mile run: {run_time//60:02d}:{run_time%60:02d}
 Average pace: {int((run_time/2)//60):02d}:{int((run_time/2)%60):02d} per mile
 DISMISSED.''')
-"""
+
 ### Problem 4
 print("\n\nProblem 4\n")
 while True:
