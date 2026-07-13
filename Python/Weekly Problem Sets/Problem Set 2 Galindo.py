@@ -38,12 +38,11 @@ class hourly_o2_reading:
         self.trend   = 'N/A'
 
 def o2_status(level):
-    match level:
-        case x if x <  15 and x >= 0: return 'CRITICAL'
-        case X if x <= 18 and x >=15: return 'LOW'
-        case x if x <= 23 and x > 18: return 'NORMAL'
-        case x if x >  23 and x <100: return 'HIGH'
-        case _: return 'INVALID READING'    
+    if x <  15 and x >= 0:  return 'CRITICAL'
+    elif x <= 18:           return 'LOW'
+    elif x <= 23:           return 'NORMAL'
+    elif x >  23:           return 'HIGH'
+    else:                   return 'INVALID READING'    
 
 def trend(index):
         if  index == 0: return 'N/A'
@@ -167,12 +166,11 @@ def mvp_candidate(gpg):
     return True if gpg>= .25 else False
 
 def grade(gpg):
-    match gpg:
-        case x if x<.10:            grade='F'
-        case x if x>=.10 and x<.15: grade='D'
-        case x if x>=.15 and x<.20: grade='C'
-        case x if x>=.20 and x<.25: grade='B'
-        case x if x>=.25:           grade='A'
+    if   x<.10:  grade='F'
+    elif x<.15:  grade='D'
+    elif x<.20:  grade='C'
+    elif x<.25:  grade='B'
+    else:        grade='A'
     return grade
 
 
