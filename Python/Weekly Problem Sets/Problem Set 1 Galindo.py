@@ -61,9 +61,9 @@ while True:
 
 print(f'''\n
 === AFTER-ACTION REPORT ===
-Soldier: {rank} {name}
-Push-ups: {push_ups}
-2-mile run: {run_time//60:02d}:{run_time%60:02d}
+Soldier:      {rank} {name}
+Push-ups:     {push_ups}
+2-mile run:   {run_time//60:02d}:{run_time%60:02d}
 Average pace: {int((run_time/2)//60):02d}:{int((run_time/2)%60):02d} per mile
 DISMISSED.''')
 
