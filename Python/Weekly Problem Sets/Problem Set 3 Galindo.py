@@ -54,40 +54,30 @@ def orbit_circumference(radius):
 def fuel_needed(mass, velocity):
     return math.floor((0.5 * mass * (velocity ** 2))*100)/100
 
+def bearing(x1, y1, x2, y2):
+    return math.degrees(math.atan2(y2-y1,(x2-x1)))
+
 def navigation_report(ship_pos, station_pos, orbit_radius,ship_mass,ship_velocity):
     print(f'''NAVIGATION REPORT:
           
 ship position:          {ship_pos}
 station position:       {station_pos}
-distance to station:    {distance(ship_pos[0],station_pos[0],ship_pos[1],station_pos[1]):.0f}
+distance to station:    {distance(ship_pos[0],ship_pos[1],station_pos[0],station_pos[1]):.0f}
+bearing to station:     {bearing(ship_pos[0],ship_pos[1],station_pos[0],station_pos[1]):.0f}
 orbit radius:           {orbit_radius}
 orbit circumference:    {orbit_circumference(orbit_radius):.02f}
 ship mass:              {ship_mass}
 ship velocity:          {ship_velocity}
 fuel required:          {fuel_needed(ship_mass, ship_velocity):.02f}
 
-ship velocity(log10):{math.log(ship_velocity, 10)}
+ship velocity(log10):{math.log(ship_velocity, 10)} 
 ''')
-    
 navigation_report([0,0],[143,892],6371,5,78)
-# ## Problem 2 — Space Mission Calculator 🚀
 
-# *Your spacecraft navigation system needs precise calculations. Import the `math` module to power the nav computer.*
 
-# **Your task:**
+# ### Challenge
 
-# - Import the `math` module.
-# - Write a function `distance(x1, y1, x2, y2)` that calculates the straight-line distance between two points in space using the distance formula. Use `math.sqrt()`.
-# - Write a function `orbit_circumference(radius)` that calculates the circumference of a circular orbit. Use `math.pi`.
-# - Write a function `fuel_needed(mass, velocity)` that calculates kinetic energy as `0.5 * mass * velocity ** 2`, then returns the result rounded to 2 decimal places using `math.floor()`.
-# - Use the functions to print a navigation report for the following mission data:
-
-# ```python
-# ship_pos    = (0, 0)
-# station_pos = (143, 892)
-# orbit_radius = 6371        # km (Earth's radius)
-# ship_mass    = 50000       # kg
-# ship_velocity = 7800       # m/s
-# ```
-
-# - Also print `math.log(ship_velocity, 10)` and explain in a comment what this value represents.
+# Use `math.degrees()` and `math.radians()` to write a function `bearing(x1, y1, x2, y2)` 
+# that returns the angle in degrees from one point to another using `math.atan2()`. 
+# Print the bearing from the ship to the station. Then use `math.ceil()` and `math.floor()` 
+# on the distance result and explain the difference between them in a comment.
