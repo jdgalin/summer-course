@@ -37,7 +37,7 @@ class hourly_o2_reading:
         self.status  = ''
         self.trend   = 'N/A'
 
-def o2_status(level):
+def o2_status(x):
     if x <  15 and x >= 0:  return 'CRITICAL'
     elif x <= 18:           return 'LOW'
     elif x <= 23:           return 'NORMAL'
@@ -165,7 +165,7 @@ def goals_per_game(goals, games):
 def mvp_candidate(gpg):
     return True if gpg>= .25 else False
 
-def grade(gpg):
+def grade(x):
     if   x<.10:  grade='F'
     elif x<.15:  grade='D'
     elif x<.20:  grade='C'
