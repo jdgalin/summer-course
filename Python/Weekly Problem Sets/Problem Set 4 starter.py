@@ -3,19 +3,33 @@ class Soldier:
     """Represents a soldier with rank, fitness, and deployment status."""
 
     def __init__(self, name: str, rank: str, fitness: int, deployed: bool):
-        pass
+        self.name=name
+        self.rank=rank
+        self.fitness=fitness
+        self.deployed=deployed
+        return
 
     def dispatch(self) -> None:
         """Mark this soldier as deployed."""
-        pass
+        self.deployed=True
+        return
 
     def __str__(self) -> str:
-        pass
+        return f'{self.name} ({self.rank}, fitness: {self.fitness}, deployed: {self.deployed})'
 
 
 def process_reports(report_list: list[str]) -> tuple[dict[str, Soldier], set[str]]:
-    """Parse report strings and return (roster_dict, ranks_set)."""
-    pass
+    """
+    Parse report strings and return (roster_dict, ranks_set).
+    - Takes a list of report strings as input
+    - Returns two values: a dictionary of `Soldier` objects (keyed by name), and a set of unique ranks
+    - Use a `for` loop to parse each report string with `.split("|")`, `.strip()`, and `.split(":")`
+    - Use `.title()` on names, `.upper()` on ranks, and `.lower()` on status values to normalise the data
+    - Create a `Soldier` object for each report and add it to the roster dictionary
+    - Collect all unique ranks in a set
+    """
+    Soldiers= {}
+
 
 
 def show_available(roster: dict[str, Soldier]) -> None:

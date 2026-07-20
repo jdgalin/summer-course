@@ -38,7 +38,11 @@ def has_more_characters(str1: str, str2: str) -> str:
 
 
 str1='!'*random.randint(1,10)
-str2='#'*random.randint(1,20)
+str2='#'*random.randint(1,15)
 print('string 1: ', str1)
 print('string 2: ', str2)
 print(f'{has_more_characters(str1,str2)}')
+
+
+
+len()
